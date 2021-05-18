@@ -29,25 +29,24 @@ class Start:
                                           wrap=275, justify=LEFT, padx=10, pady=10)
         self.quiz_instructions.grid(row=1)
 
-        # Number Question Heading (row 2)
-        self.start_frame_label = Label(self.start_frame, text="How many Questions would you like to answer?",
-                                       font="Arial 19 bold")
-        self.start_frame_label.grid(row=2)
+        # Question Heading, entry box & Button (row 2)
+        self.entry_error_frame = Frame(self.start_frame, width=200)
+        self.entry_error_frame.grid(row=2)
 
-        # Entry box & Button (row 3)
-        self.start_amount_entry = Entry(self.start_frame, width=200)
+        self.start_amount_entry = Entry(self.entry_error_frame, 
+                                        font="Arial 19 bold", width=200)
         self.start_amount_entry.grid(row=3)
 
-        self.start_amount_entry = Entry(self.entry_error_frame,
+        self.add_question_button = Button(self.entry_error_frame,
                                         font="Arial 14 bold", width=10)
-        self.start_amount_entry.grid(row=0, column=1)
+        self.add_question_button.grid(row=0, column=1)
         
         self.number_error_label = Label(self.start_frame, fg="blue",
                                         text="", font="Arial 10 bold",
                                         justify=LEFT)
         self.number_error_label.grid(row=3)
 
-        # button frame (row 4)
+        # button frame (row 3)
         self.start_frame = Frame(self.start_frame)
         self.start_frame.grid(row=4)
 
@@ -58,7 +57,7 @@ class Start:
                                    font=button_font, bg="#FF9933")
         self.start_button.grid(row=0, column=0, pady=10)
         # Blue select button
-        self.select_button = Button(self.select_frame, text="Select",
+        self.select_button = Button(self.start_frame, text="Select",
                                     font=button_font, bg="#3399FF")
         self.select_button.grid(row=0, column=0, pady=10)
 
