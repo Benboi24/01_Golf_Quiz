@@ -30,17 +30,13 @@ class Start:
         self.quiz_instructions.grid(row=1)
 
         # Question Heading, entry box & Button (row 2)
-        self.entry_error_frame = Frame(self.start_frame, width=200)
+        self.entry_error_frame = Frame(self.start_frame, width=10)
         self.entry_error_frame.grid(row=2)
 
         self.start_amount_entry = Entry(self.entry_error_frame, 
-                                        font="Arial 19 bold", width=200)
+                                        font="Arial 19 bold", width=10)
         self.start_amount_entry.grid(row=3)
 
-        self.add_question_button = Button(self.entry_error_frame,
-                                        font="Arial 14 bold", width=10)
-        self.add_question_button.grid(row=0, column=1)
-        
         self.number_error_label = Label(self.start_frame, fg="blue",
                                         text="", font="Arial 10 bold",
                                         justify=LEFT)
@@ -55,11 +51,11 @@ class Start:
         # Orange start button
         self.start_button = Button(self.start_frame, text="Start",
                                    font=button_font, bg="#FF9933")
-        self.start_button.grid(row=0, column=0, pady=10)
+        self.start_button.grid(row=4, column=0, pady=10)
         # Blue select button
         self.select_button = Button(self.start_frame, text="Select",
                                     font=button_font, bg="#3399FF")
-        self.select_button.grid(row=0, column=0, pady=10)
+        self.select_button.grid(row=3, column=0, pady=10)
 
     def number_amount(self): 
         number_balance = self.number_amount_entry.get()
