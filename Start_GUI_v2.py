@@ -42,7 +42,7 @@ class Start:
                                         font="Arial 19 bold", width=10)
         self.start_amount_entry.grid(row=4)
 
-        self.number_error_label = Label(self.start_frame, fg="blue",
+        self.number_error_label = Label(self.start_frame, fg="red",
                                         text="", font="Arial 10 bold",
                                         justify=LEFT)
         self.number_error_label.grid(row=4)
@@ -57,13 +57,10 @@ class Start:
         self.start_button = Button(self.start_frame, text="Start Game",
                                    font=button_font, bg="#FF9933")
         self.start_button.grid(row=5, column=0, pady=5)
-        # Blue select button
-        self.select_button = Button(self.start_frame, text="Select Amount of Games",
-                                    font=button_font, bg="#3399FF")
-        self.select_button.grid(row=4, column=0, pady=5)
+        
 
-    def number_amount(self): 
-        number_balance = self.number_amount_entry.get()
+    def check_question_amount(self): 
+        question_amount = self.number_amount_entry.get()
 
         # Set error background colours (and assume that there are no)
         # errors at the start...
@@ -71,12 +68,12 @@ class Start:
         has_errors = "no"
 
         try:
-            number_balance = int(number_balance)
+            question_amount = int(question_amount)
 
-            if number_balance < 10:
+            if question_amount < 10:
                 has_errors = "yes"
                 error_feedback = "Sorry, the minimum amount of questions you can play with is 10"
-            elif number_balance > 50:
+            elif question_amount > 50:
                 has_errors = "yes"
                 error_feedback = "Sorry, the maximum amount of questions you can play with is 50"
 
@@ -87,7 +84,7 @@ class Start:
     def to_play(self, amount_entry):
 
         # Retrieve number amount
-        number_balance = self.number_amount.get()
+        question_amount = self.number_amount.get()
 
         Game(self. amount_entry)
 
