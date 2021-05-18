@@ -30,8 +30,7 @@ class Start:
         self.quiz_instructions.grid(row=1)
 
         self.question_instructions = Label(self.start_frame, font="Arial 10 bold",
-                                                text="Below input how many questions " 
-                                                " you want to play with:",
+                                                text="How many questions would you like? ",
                                                 wrap=275, justify=LEFT, padx=10, pady=10)
         self.question_instructions.grid(row=2)
 
@@ -55,11 +54,11 @@ class Start:
         # Buttons go here...
         button_font = "Arial 12 bold"
         # Orange start button
-        self.start_button = Button(self.start_frame, text="Start",
+        self.start_button = Button(self.start_frame, text="Start Game",
                                    font=button_font, bg="#FF9933")
         self.start_button.grid(row=5, column=0, pady=5)
         # Blue select button
-        self.select_button = Button(self.start_frame, text="Select",
+        self.select_button = Button(self.start_frame, text="Select Amount of Games",
                                     font=button_font, bg="#3399FF")
         self.select_button.grid(row=4, column=0, pady=5)
 
