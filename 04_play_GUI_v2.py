@@ -1,20 +1,36 @@
 import csv
+from os import urandom
 
 import re
+from tkinter import Button, Entry, Frame, Label, Toplevel
+import tkinter
+from tkinter.constants import DISABLED, LEFT
 
-class Play:
+class Start:
     def __init__(self, parent):
 
         # GUI to get user to start game
         self.start_frame = Frame(padx=10, pady=10)
         self.start_frame.grid()
 
+        self.push_me_button = Button(text="Push Me", command=self.to_game)
+        self.push_me_button.grid(row=0, pady=10)
+
+        # hide start up window
+        self.start_frame.destroy()
+
+class Game:
+    def __init__(self, parent, question_amount):
+
+        # GUI Setup
+        self.game_box = Toplevel()
+
         # Golf Quiz Heading (row 0)
         self.start_frame_label = Label(self.start_frame, text="Golf Quiz Game",
                                         font="Arial 19 bold")
         self.start_frame_label.grid(row=0)
 
-        # Instructions (row 1)
+        # Instructions Label (row 1)
         self.golf_instructions = Label(self.start_frame, font="Arial 10 italic",
                                         text="Press Next when you have answered the question.",
                                         wrap=275, justify=LEFT, padx=10, pady=10)
@@ -34,9 +50,9 @@ class Play:
 
         # Randomly prints out a question
         # Formats questions
-        question = [csv_questions]
-        print(secrets.choice(question))
-        print("{}?".format(question)
+        questions = ['Question1', 'Question2', 'Question3']
+        random_question = urandom.choice(questions)
+        print(random_question)
 
         # Entry box & Button (row 3)
 
@@ -55,7 +71,7 @@ class Play:
 
 
     class Help:
-        def __init(self,partner):
+        def __init(self,partner, partial):
 
             # disable help button
                 partner.help_button.config(state=DISABLED)
@@ -123,7 +139,7 @@ class Play:
 
 # main routine
 if __name__ == "__main__":
-    root = Tk()
+    root = tk()
     root.title("Mystery Box Game")
     something = Start(root)
     root.mainloop()
