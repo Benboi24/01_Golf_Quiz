@@ -55,17 +55,23 @@ class Start:
         button_font = "Arial 12 bold"
         # Orange start button
         self.start_button = Button(self.start_frame, text="Start Game",
-                                   font=button_font, bg="#FF9933")
+                                   font=button_font, bg="#FF9933", command=self.check_question_amount)
         self.start_button.grid(row=5, column=0, pady=5)
         
-
     def check_question_amount(self): 
-        question_amount = self.number_amount_entry.get()
+        question_amount = self.start_amount_entry.get()
 
         # Set error background colours (and assume that there are no)
         # errors at the start...
         error_back = "#ffafaf"
         has_errors = "no"
+
+        # change backgrounds to white for testing purpose
+        self.start_amount_entry.config(bg="white")
+        self.number_error_label.config(text="")
+
+        # Disable start button in case user changes their mind
+        
 
         try:
             question_amount = int(question_amount)
@@ -73,27 +79,40 @@ class Start:
             if question_amount < 10:
                 has_errors = "yes"
                 error_feedback = "Sorry, the minimum amount of questions you can play with is 10"
-            elif question_amount > 50:
+            elif question_amount > 40:
                 has_errors = "yes"
-                error_feedback = "Sorry, the maximum amount of questions you can play with is 50"
+                error_feedback = "Sorry, the maximum amount of questions you can play with is 40"
 
         except ValueError:
                 has_errors = "yes"
                 error_feedback = "Enter a number please (no decimals / text)"
 
-    def to_play(self, amount_entry):
+        if has_errors == "yes":
+            self.start_amount_entry.config(bg=error_back)
+            self.number_error_label.config(text=error_feedback)
+        else:
+            # Set question balance to amount entered by the user
+            self.number_amount.set(question_amount)
+
+    def to_play(self):
 
         # Retrieve number amount
         question_amount = self.number_amount.get()
 
-        Game(self. amount_entry)
+        Game(self. question_amount)
 
         # hide start up window
-        root.withdraw()
+        # root.withdraw()
 
 class Game:
-    def __init__(self, partner, amount_entry):
-        print(amount_entry)
+    def __init__(self, partner, number_amount):
+        print(number_amount)
+
+        # GUI Setup
+        self.quiz_box = Toplevel()
+        self.quiz_frame = Frame(self.quiz_box)
+        self.quiz_frame.grid()
+
 
 # main routine
 if __name__ == "__main__":

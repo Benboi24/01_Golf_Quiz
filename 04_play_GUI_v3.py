@@ -1,7 +1,8 @@
 import csv
 import random
-from tkinter import Button, Frame, Label, Toplevel
-import tkinter
+# from tkinter import Button, Frame, Label, Toplevel
+from tkinter import *
+
 from tkinter.constants import DISABLED, LEFT
 
 
@@ -18,6 +19,16 @@ class Start:
 
         # hide start up window
         self.start_frame.destroy()  
+
+    def to_game(self):
+
+        # retrieve question amount
+        question_amount = self.number_amount.get()
+
+        Game(self, question_amount)
+
+        # hide start up window
+        # root.withdraw()
 
 class Game:
     def __init__(self, parent, question_amount):
@@ -93,7 +104,7 @@ class Help:
             self.dismiss_btn = Button(self.help_frame, text="Dismiss",
                                     width=10, bg="#660000", fg="white",
                                     font="arial 16 bold")
-        
+     
 
 class GameStats:
     def __init__(self, partner, quiz_history, partial):
@@ -126,6 +137,6 @@ class GameStats:
 # main routine
 if __name__ == "__main__":
     root = Tk()
-    root.title("Mystery Box Game")
+    root.title("Golf Quiz Game")
     something = Start(root)
     root.mainloop()
