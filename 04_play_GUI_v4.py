@@ -29,9 +29,8 @@ class Start:
         self.entry_error_frame = Frame(self.play_frame, width=10)
         self.entry_error_frame.grid(row=3)
 
-        self.start_amount_entry = Entry(self.entry_error_frame, 
-                                        font="Arial 19 bold", width=10)
-        self.start_amount_entry.grid(row=4)
+        self.answer_entry = Entry(self.play_frame, font="Arial 19 bold", width=10)
+        self.answer_entry.grid(row=3)
 
         # Will have total questions each time you answer one
         self.number_error_label = Label(self.play_frame, fg="red",
@@ -52,16 +51,16 @@ class Start:
         self.next_button.grid(row=3, column=1, pady=15)
         # Green Help Button
         self.help_button = Button(self.play_frame, text="Help",
-                                   font=button_font, bg="#FF9933")
-        self.help_button.grid(row=5, column=0, pady=15)
+                                   font=button_font, bg="#009900")
+        self.help_button.grid(row=5, column=0, pady=10)
         # Blue Stats Button
         self.stats_button = Button(self.play_frame, text="Stats",
-                                   font=button_font, bg="#0000FF")
-        self.stats_button.grid(row=5, column=1, pady=15, padx=15)
+                                   font=button_font, bg="#FF0000")
+        self.stats_button.grid(row=5, column=1, pady=10, padx=5)
         # Purple Dismiss Button
         self.dismiss_button = Button(self.play_frame, text="Dismiss",
                                     font=button_font, bg="#B266FF")
-        self.dismiss_button.grid(row=5, column=2, pady=15, padx=15)
+        self.dismiss_button.grid(row=5, column=2, pady=10, padx=15)
 
     def to_play(self):
 
