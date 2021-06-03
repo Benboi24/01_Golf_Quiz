@@ -1,4 +1,5 @@
 import csv
+from os import startfile
 import random
 # from tkinter import Button, Frame, Label, Toplevel
 from tkinter import *
@@ -6,39 +7,19 @@ from tkinter import *
 from tkinter.constants import DISABLED, LEFT
 
 
-
-class Start:
-    def __init__(self, parent):
-
-        # GUI to get user to start game
-        self.start_frame = Frame(padx=10, pady=10)
-        self.start_frame.grid()
-
-        self.push_me_button = Button(text="Push Me", command=self.to_game)
-        self.push_me_button.grid(row=0, pady=10)
-
-        # hide start up window
-        self.start_frame.destroy()  
-
-    def to_game(self):
-
-        # retrieve question amount
-        question_amount = self.number_amount.get()
-
-        Game(self, question_amount)
-
-        # hide start up window
-        # root.withdraw()
-
 class Game:
     def __init__(self, parent, question_amount):
 
         # GUI Setup
         self.game_box = Toplevel()
 
+        # If users press cross at top, quiz quits
+        self.game_box.protocol("WN_DELETE_WINDOW", self.to_quit)
+
         # Golf Quiz Heading (row 0)
         self.start_frame_label = Label(self.start_frame, text="Golf Quiz Game",
-                                        font="Arial 19 bold")
+                                        font="Arial 19 bold",padx=10,
+                                        pady=10)
         self.start_frame_label.grid(row=0)
 
         # Instructions Label (row 1)
@@ -133,10 +114,12 @@ class GameStats:
                                         font="arial 19 bold")
         self.stats_heading_label.grid(row=0)
 
+    def to_quit(self):
+        root.destroy()
 
 # main routine
 if __name__ == "__main__":
     root = Tk()
     root.title("Golf Quiz Game")
-    something = Start(root)
+    something = startfile(root)
     root.mainloop()
