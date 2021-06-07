@@ -46,8 +46,8 @@ class Start:
                                         justify=LEFT)
         self.number_error_label.grid(row=2)
 
-        # Next Button (row 4)
-        self.next_frame = Frame(self.play_frame, width=100)
+        # Next Frame & Button (row 4)
+        self.next_frame = Frame(self.play_frame, width=15)
         self.next_frame.grid(row=4)
 
         self.next_button = Button(self.next_frame, text="Next",
