@@ -7,7 +7,7 @@ class Start:
     def __init__(self, parent):
 
         # Buttons styling here...
-        button_font = "Arial 12 bold"
+        button_font = "Arial 13 bold"
 
         # GUI to get user to start game
         self.play_frame = Frame(padx=10, pady=10)
@@ -28,11 +28,17 @@ class Start:
                                           wrap=275, justify=LEFT, padx=10, pady=10)
         self.quiz_instructions.grid(row=1)
 
-        # Statement Heading, entry box & Buttons (row 2)
+        # Question Goes Here
+        self.quiz_question_label = Label(self.play_frame, fg="Blue",
+                                         text="Question Goes Here", font="Arial 16 bold",
+                                         justify=LEFT)
+        self.quiz_question_label.grid(row=2)
+                        
+        # Statement Heading, entry box & Buttons (row 3)
         self.entry_error_frame = Frame(self.play_frame, width=10)
         self.entry_error_frame.grid(row=3)
 
-        self.answer_entry = Entry(self.entry_error_frame, font="Arial 19 bold", width=10)
+        self.answer_entry = Entry(self.entry_error_frame, font="Arial 18 bold", width=10)
         self.answer_entry.grid(row=0)
 
         # Yellow Select Button
@@ -44,33 +50,33 @@ class Start:
         self.number_error_label = Label(self.play_frame, fg="red",
                                         text="errors go here", font="Arial 10 bold",
                                         justify=LEFT)
-        self.number_error_label.grid(row=2)
+        self.number_error_label.grid(row=4)
 
-        # Next Frame & Button (row 4)
-        self.next_frame = Frame(self.play_frame, width=15)
-        self.next_frame.grid(row=4)
-
-        self.next_button = Button(self.next_frame, text="Next",
+        # Next Frame & Button (row 5)
+        self.next_frame = Frame(self.play_frame, width=20)
+        self.next_frame.grid(row=5)
+        
+        self.next_button = Button(self.next_frame, text="Next Question", width = 20,
                                  font=button_font, bg="#FF0080")
         self.next_button.grid(row=0, column=1, padx=5, pady=10)
 
-        # Help, Status & Dismiss Buttons 
+        # Help, Status, Dismiss & Next Buttons 
         self.hsd_frame = Frame(self.play_frame)
-        self.hsd_frame.grid(row=5)
+        self.hsd_frame.grid(row=6)
 
         # Green Help Button
         self.help_button = Button(self.hsd_frame, text="Help",
                                    font=button_font, bg="#009900")
-        self.help_button.grid(row=0, column=0, padx=5)
+        self.help_button.grid(row=0, column=0, padx=6)
 
         # Blue Stats Button
         self.stats_button = Button(self.hsd_frame, text="Stats",
                                    font=button_font, bg="#FF0000")
-        self.stats_button.grid(row=0, column=1, padx=5)
+        self.stats_button.grid(row=0, column=1, padx=6)
         # Purple Dismiss Button
         self.dismiss_button = Button(self.hsd_frame, text="Dismiss",
                                     font=button_font, bg="#B266FF")
-        self.dismiss_button.grid(row=0, column=2, padx=5)
+        self.dismiss_button.grid(row=0, column=2, padx=6)
 
         # button frame (row 3)
         self.start_frame = Frame(self.play_frame)
