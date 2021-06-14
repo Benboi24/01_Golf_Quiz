@@ -4,7 +4,7 @@ import random
 import csv
 
 
-class Start:
+class Quiz:
     def __init__(self, parent):
 
         # Buttons styling here...
@@ -15,8 +15,10 @@ class Start:
         self.play_frame.grid()
 
         # Set intial amount of games to zero
-        self.number_amount = IntVar()
-        self.number_amount.set(0)
+        self.question_amount = IntVar()
+        self.question_amount.set(0)
+
+        self.right_ans = StringVar()
 
         # Golf Quiz Heading (row 0)
         self.start_frame_label = Label(self.play_frame, text="Golf Quiz Game",
@@ -39,7 +41,7 @@ class Start:
         self.entry_error_frame = Frame(self.play_frame, width=10)
         self.entry_error_frame.grid(row=3)
 
-        self.answer_entry = Entry(self.entry_error_frame, font="Arial 18 bold", width=10)
+        self.answer_entry = Entry(self.entry_error_frame, font="Arial 14 bold", width=10)
         self.answer_entry.grid(row=0)
 
         # Yellow Select Button
@@ -83,24 +85,29 @@ class Start:
         self.start_frame = Frame(self.play_frame)
         self.start_frame.grid(row=5)  
 
-        # Disable Next Question Button at start
-        self.next_button.config(state=DISABLED)
+        # Disable next question button at start
+        # self.next_button.config(state=DISABLED)
         
     def next_question(self):
         # Open file
-        with open('golf.csv', newline='') as f:
+        with open('golf_v3.csv', newline='') as f:
             reader = csv.reader(f)
             data = list(reader)
         
-        print(data)
+        # print(data)
 
+        # Randomly selects a question from csv
         question_ans = random.choice(data)
+        print(question_ans)
         question = question_ans[0]
+        answer = question_ans[1]
         
-        print(question, row=3)
+        # Prints the question
+        print(question)
+        print(answer)
 
-            # hide start up window
-            # root.withdraw()
+        self.quiz_question_label.config(text=question)
+
 
 class Help:
     def __init(self,partner, partial):
@@ -156,5 +163,5 @@ class Game:
 if __name__ == "__main__":
     root = Tk()
     root.title("Golf Quiz Game")
-    something = Start(root)
+    something = Quiz(root)
     root.mainloop()
