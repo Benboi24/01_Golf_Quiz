@@ -1,12 +1,6 @@
-import random
 import csv
 
-
-data = 'golf_quiz'
-
-question_ans = random.choice(data)
-question = question_ans[0]
-answer = question_ans[1]
-
-print(question)
-print(answer)
+with open('golf.csv', newline='') as f:
+            reader = csv.reader(f)
+            for row in reader:
+                print = (row[1])

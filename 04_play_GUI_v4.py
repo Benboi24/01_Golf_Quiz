@@ -1,6 +1,7 @@
 from tkinter import *
 from functools import partial  # To prevent unwanted windows
 import random
+import csv
 
 
 class Start:
@@ -24,7 +25,7 @@ class Start:
 
         # Initial Instructions, Question instructions (row 1 & 2)
         self.quiz_instructions = Label(self.play_frame, font="Arial 10 italic",
-                                          text=" Press next when you have answered the question. ",
+                                          text=" Press next when you have answered. ",
                                           wrap=275, justify=LEFT, padx=10, pady=10)
         self.quiz_instructions.grid(row=1)
 
@@ -42,9 +43,9 @@ class Start:
         self.answer_entry.grid(row=0)
 
         # Yellow Select Button
-        self.select_button = Button(self.entry_error_frame, text="Select",
+        self.check_button = Button(self.entry_error_frame, text="Check",
                                    font=button_font, bg="#FFFF33")
-        self.select_button.grid(row=0, column=1, pady=10, padx=5)
+        self.check_button.grid(row=0, column=1, pady=10, padx=5)
 
         # Will have total questions each time you answer one
         self.number_error_label = Label(self.play_frame, fg="red",
@@ -56,8 +57,8 @@ class Start:
         self.next_frame = Frame(self.play_frame, width=20)
         self.next_frame.grid(row=5)
         
-        self.next_button = Button(self.next_frame, text="Next Question", width = 20,
-                                 font=button_font, bg="#FF0080")
+        self.next_button = Button(self.next_frame, text="Next Question", width = 19,
+                                 font=button_font, bg="#FF0080", command=self.next_question)
         self.next_button.grid(row=0, column=1, padx=5, pady=10)
 
         # Help, Status, Dismiss & Next Buttons 
@@ -66,7 +67,7 @@ class Start:
 
         # Green Help Button
         self.help_button = Button(self.hsd_frame, text="Help",
-                                   font=button_font, bg="#009900")
+                                   font=button_font, bg="#009900",)
         self.help_button.grid(row=0, column=0, padx=6)
 
         # Blue Stats Button
@@ -80,17 +81,66 @@ class Start:
 
         # button frame (row 3)
         self.start_frame = Frame(self.play_frame)
-        self.start_frame.grid(row=5)     
+        self.start_frame.grid(row=5)  
 
-    def to_play(self):
+        # Disable Next Question Button at start
+        self.next_button.config(state=DISABLED)
+        
+    def next_question(self):
+        # Open file
+        with open('golf.csv', newline='') as f:
+            reader = csv.reader(f)
+            data = list(reader)
+        
+        print(data)
 
-        # Retrieve number amount
-        question_amount = self.number_amount.get()
+        question_ans = random.choice(data)
+        question = question_ans[0]
+        
+        print(question, row=3)
 
-        Game(self. question_amount)
+            # hide start up window
+            # root.withdraw()
 
-        # hide start up window
-        # root.withdraw()
+class Help:
+    def __init(self,partner, partial):
+
+        # disable help button
+        partner.help_button.config(state=DISABLED)
+
+        # Sets up child window (ie: help box)
+        self.help_box = Toplevel()
+
+        # If users press cross at top, closes help and 'releases' help button
+        self.help_box.protocol('WM_DELETE_WINDOW', partial(self.close_help, partner))
+
+        # Set up GUI Frame
+        self.help_frame = Frame(self.help_box, width=300)
+        self.help_frame.grid()
+
+        # Set up Help heading (row 0)
+        self.how_heading = Label(self.help_frame, text="Help / Instructions",
+                                font="arial 14 bold")
+        self.how_heading.grid(row=0)
+
+        help_text="This game is a quiz on general knowledge of Golf "\
+        "ranging from dates, people and places. "\
+        "Maximum of 50 questions per round. "\
+        "Once finished you can export answers & questions to a separate file. " 
+        "Even if you don't know take a guess, " 
+        "enjoy the quiz and try get 100%!"
+
+        # Help text (label, row 1)
+        self.help_text = Label(self.help_frame, text=help_text,
+                            justify=LEFT, wrap=400, padx=10, pady=10)
+        self.help_text.grid(row=1)
+
+        # Dismiss Button (row 2)
+        self.dismiss_btn = Button(self.help_frame, text="Dismiss",
+                                width=10, bg="#660000", fg="white",
+                                font="arial 16 bold")
+        self.dismiss_btn.grid(row=2)
+        
 
 class Game:
     def __init__(self, partner, number_amount):
