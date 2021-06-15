@@ -15,6 +15,7 @@ class Quiz:
         self.play_frame.grid()
 
         # Set intial amount of games to zero
+        # retireve the initial amount they selected in play GUI
         self.question_amount = IntVar()
         self.question_amount.set(0)
 
@@ -46,7 +47,7 @@ class Quiz:
 
         # Yellow Select Button
         self.check_button = Button(self.entry_error_frame, text="Check",
-                                   font=button_font, bg="#FFFF33")
+                                   font=button_font, bg="#FFFF33", command=self.check)
         self.check_button.grid(row=0, column=1, pady=10, padx=5)
 
         # Will have total questions each time you answer one
@@ -101,12 +102,25 @@ class Quiz:
         print(question_ans)
         question = question_ans[0]
         answer = question_ans[1]
+
+        self.right_ans.set(answer)
         
         # Prints the question
         print(question)
         print(answer)
 
         self.quiz_question_label.config(text=question)
+
+
+    def check(self):
+
+        print("you pushed check")
+
+        question_ans = self.right_ans.get()
+        print(question_ans)
+
+        error_back = "ffafaf"
+        has_errors = "no"
 
 
 class Help:

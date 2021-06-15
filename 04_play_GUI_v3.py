@@ -121,5 +121,5 @@ class GameStats:
 if __name__ == "__main__":
     root = Tk()
     root.title("Golf Quiz Game")
-    something = startfile(root)
+    something = Start(root)
     root.mainloop()
