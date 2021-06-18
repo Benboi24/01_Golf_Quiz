@@ -34,8 +34,8 @@ class Quiz:
 
         # Question Goes Here
         self.quiz_question_label = Label(self.play_frame, fg="Blue",
-                                         text="Question Goes Here", font="Arial 16 bold",
-                                         justify=LEFT)
+                                         text="Question Goes Here", font="Arial 14 bold",
+                                         wrap=275, justify=LEFT)
         self.quiz_question_label.grid(row=2)
                         
         # Statement Heading, entry box & Buttons (row 3)
@@ -116,11 +116,17 @@ class Quiz:
 
         print("you pushed check")
 
-        question_ans = self.right_ans.get()
-        print(question_ans)
+        right_ans = self.right_ans.get()
+        print(right_ans)
 
-        error_back = "ffafaf"
-        has_errors = "no"
+        answer_entry = self.answer_entry.get()
+        print(answer_entry)
+
+        # Printing out wether the answer is right or incorrect
+        if answer_entry == right_ans:
+            print("You are correct!!")
+        else:
+            print("sorry, the answer is", right_ans)
 
 
 class Help:
