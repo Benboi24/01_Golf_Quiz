@@ -1,3 +1,4 @@
+from os import error
 from tkinter import *
 from functools import partial  # To prevent unwanted windows
 import random
@@ -127,6 +128,8 @@ class Quiz:
             print("You are correct!!")
         else:
             print("sorry, the answer is", right_ans)
+
+            self.number_error_label.config(text=error)
 
 
 class Help:
