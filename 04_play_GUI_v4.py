@@ -88,7 +88,7 @@ class Quiz:
         self.start_frame.grid(row=5)  
 
         # Disable next question button at start
-        # self.next_button.config(state=DISABLED)
+        self.check_button.config(state=DISABLED)
         
     def next_question(self):
         # Open file
@@ -112,10 +112,15 @@ class Quiz:
 
         self.quiz_question_label.config(text=question)
 
+        self.check_button.config(state=NORMAL)
+        self.next_button.config(state=DISABLED)
+
 
     def check(self):
 
         print("you pushed check")
+
+        self.next_button.config(state=NORMAL)
 
         right_ans = self.right_ans.get()
         print(right_ans)
@@ -126,11 +131,13 @@ class Quiz:
         # Printing out wether the answer is right or incorrect
         if answer_entry == right_ans:
             print("You are correct!!")
+            error = "Well done, the answer is {}!".format(right_ans)
         else:
             print("sorry, the answer is", right_ans)
             error = "sorry, the right answer is, {}".format(right_ans)
 
             self.number_error_label.config(text=error)
+
 
 class Help:
     def __init(self,partner, partial):
