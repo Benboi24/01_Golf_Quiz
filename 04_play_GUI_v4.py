@@ -128,6 +128,7 @@ class Quiz:
             print("You are correct!!")
         else:
             print("sorry, the answer is", right_ans)
+            error = "sorry, the right answer is, {}".format(right_ans)
 
             self.number_error_label.config(text=error)
 
