@@ -65,6 +65,6 @@ class Help:
 # main routine
 if __name__ == "__main__":
     root = Tk()
-    root.title("Mystery Box Game")
+    root.title("Golf Quiz Game")
     something = Start(root)
     root.mainloop()

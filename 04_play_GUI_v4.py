@@ -29,7 +29,7 @@ class Quiz:
 
         # Initial Instructions, Question instructions (row 1 & 2)
         self.quiz_instructions = Label(self.play_frame, font="Arial 10 italic",
-                                          text=" Press next when you have answered. ",
+                                          text=" Press next question when you have answered. ",
                                           wrap=275, justify=LEFT, padx=10, pady=10)
         self.quiz_instructions.grid(row=1)
 
@@ -130,7 +130,6 @@ class Quiz:
             print("sorry, the answer is", right_ans)
 
             self.number_error_label.config(text=error)
-
 
 class Help:
     def __init(self,partner, partial):
