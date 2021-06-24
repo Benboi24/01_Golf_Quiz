@@ -130,8 +130,7 @@ class Quiz:
 
         # Printing out wether the answer is right or incorrect
         if answer_entry == right_ans:
-            print("Well done that is correct!!")
-            error = "Well done, the answer is {}!".format(right_ans)
+            print("Well done, the answer is correct!!")
         else:
             print("sorry, the answer is", right_ans)
             error = "sorry, the right answer is, {}".format(right_ans)
