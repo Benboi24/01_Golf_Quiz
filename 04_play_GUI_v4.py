@@ -92,7 +92,7 @@ class Quiz:
         
     def next_question(self):
         # Open file
-        with open('golf_v3.csv', newline='') as f:
+        with open('golf_v5.csv', newline='') as f:
             reader = csv.reader(f)
             data = list(reader)
         
