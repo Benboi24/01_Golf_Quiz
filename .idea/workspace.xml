@@ -23,9 +23,11 @@
       <file leaf-file-name="04_play_GUI_v4.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/04_play_GUI_v4.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
-              <folding />
+            <state relative-caret-position="340">
+              <caret line="128" column="27" selection-start-line="128" selection-start-column="27" selection-end-line="128" selection-end-column="27" />
+              <folding>
+                <element signature="e#0#20#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -43,8 +45,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="381" />
-    <option name="y" value="63" />
+    <option name="x" value="297" />
+    <option name="y" value="22" />
     <option name="width" value="1400" />
     <option name="height" value="1000" />
   </component>
@@ -277,7 +279,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="381" y="63" width="1400" height="1000" extended-state="0" />
+    <frame x="297" y="22" width="1400" height="1000" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -317,9 +319,11 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/04_play_GUI_v4.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
-          <folding />
+        <state relative-caret-position="340">
+          <caret line="128" column="27" selection-start-line="128" selection-start-column="27" selection-end-line="128" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

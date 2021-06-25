@@ -92,7 +92,7 @@ class Quiz:
         
     def next_question(self):
         # Open file
-        with open('golf_v5.csv', newline='') as f:
+        with open('golf_quiz_v5.csv', newline='') as f:
             reader = csv.reader(f)
             data = list(reader)
         
@@ -130,8 +130,8 @@ class Quiz:
 
         # Printing out wether the answer is right or incorrect
         if answer_entry == right_ans:
-            print("You are correct!!")
-            error = "Well done, the answer is {}!".format(right_ans)
+            print("Well done, the answer is correct!!")
+            error = "Well done, the answer is {}".format(right_ans)
         else:
             print("sorry, the answer is", right_ans)
             error = "sorry, the right answer is, {}".format(right_ans)
