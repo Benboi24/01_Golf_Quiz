@@ -114,7 +114,7 @@ class Export:
             f = open(filename, "w+")
 
             # Heading for Stats
-            f.write("Game Statistics\n\n")
+            f.write("Quiz Statistics\n\n")
 
             # Game Stats
             for round in game_stats:

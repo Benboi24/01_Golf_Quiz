@@ -78,10 +78,15 @@ class Quiz:
         self.stats_button = Button(self.hsd_frame, text="Stats",
                                    font=button_font, bg="#FF0000")
         self.stats_button.grid(row=0, column=1, padx=6)
+        
         # Purple Dismiss Button
         self.dismiss_button = Button(self.hsd_frame, text="Dismiss",
-                                    font=button_font, bg="#B266FF")
+                                    font=button_font, bg="#B266FF", 
+                                    command=self.close_quiz)
         self.dismiss_button.grid(row=0, column=2, padx=6)
+
+    def close_quiz(self):
+        root.destroy()
 
         # button frame (row 3)
         self.start_frame = Frame(self.play_frame)
@@ -130,14 +135,15 @@ class Quiz:
 
         # Printing out wether the answer is right or incorrect
         if answer_entry == right_ans:
-            print("Well done, the answer is correct!!")
+            print("Well done, the answer is", right_ans)
             error = "Well done, the answer is {}".format(right_ans)
         else:
             print("sorry, the answer is", right_ans)
             error = "sorry, the right answer is, {}".format(right_ans)
 
             self.number_error_label.config(text=error)
-
+            self.number_error_label.config(text=error)
+            
 
 class Help:
     def __init(self,partner, partial):
@@ -177,8 +183,10 @@ class Help:
                                 width=10, bg="#660000", fg="white",
                                 font="arial 16 bold")
         self.dismiss_btn.grid(row=2)
-        
 
+    def to_help(self):
+        get_help = Help(self)
+        
 class Game:
     def __init__(self, partner, number_amount):
         print(number_amount)
