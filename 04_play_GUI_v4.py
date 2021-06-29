@@ -71,7 +71,7 @@ class Quiz:
 
         # Green Help Button
         self.help_button = Button(self.hsd_frame, text="Help",
-                                   font=button_font, bg="#009900",)
+                                   font=button_font, bg="#009900")
         self.help_button.grid(row=0, column=0, padx=6)
 
         # Blue Stats Button
@@ -186,6 +186,73 @@ class Help:
 
     def to_help(self):
         get_help = Help(self)
+
+class GameStats:
+    def __init__(self, partner, game_history, game_stats):
+
+        print(game_history)
+
+        # disable help button
+        partner.stats_button.config(state=DISABLED)
+
+        heading = "Arial 12 bold"
+        content = "Arial 12"
+
+        # Sets up child window (ie: help box)
+        self.stats_box = Toplevel()
+
+        # If users press cross at top, closes help and 'releases' help button
+        self.stats_box.protocol('WM_DELETE_WINDOW', partial(self.close_stats,
+                                                            partner))
+
+        # Set up GUI Frame
+        self.stats_frame = Frame(self.stats_box)
+        self.stats_frame.grid()
+
+        # Set up Help heading (row 0)
+        self.stats_heading_label = Label(self.stats_frame, text="Quiz Statistics",
+                                         font="arial 19 bold")
+        self.stats_heading_label.grid(row=0)
+
+        # To Export <instructions> (row 1)
+        self.export_instructions = Label(self.stats_frame,
+                                         text="Here are your Quiz Statistics."
+                                              "Please use the Export button to "
+                                              "access the results of each "
+                                              "round that you played", wrap=250,
+                                         font="arial 10 italic",
+                                         justify=LEFT, fg="green",
+                                         padx=10, pady=10)
+        self.export_instructions.grid(row=1)    
+
+        # Questions Correct (row 2)
+        self.details_frame = Frame(self.stats_frame)
+        self.details_frame.grid(row=2)
+
+        self.stats_correct_label = Label(self.details_frame,
+                                        text="Questions Correct:", font=heading,
+                                        anchor="e")
+        self.stats_correct_label.grid(row=0, column=1, padx=0)
+
+        self.stats_correct_value_label = Label(self.details_frame, font=content,
+                                              text="{} Questions Correct".format(),
+                                              anchor="w")
+        self.stats_correct_value_label.grid(row=0, column=1, padx=0)
+
+        # Questions Incorrect (row 2.1)
+        self.stats_incorrect_label = Label(self.details_frame,
+                                          text="Questions Incorrect:", font=heading,
+                                          anchor="e")
+        self.stats_incorrect_label.grid(row=1, column=1, padx=0)
+
+        self.stats_incorrect_value_label = Label(self.details_frame)
+
+        # Percentage Correct (row 2.2)
+        self.percent_correct_label = Label(self.details_frame,
+                                          text="Percentage Overall:", font=heading,
+                                          anchor="e")
+        self.percent_correct_label.grid(row=1, column=1, padx=0)
+
         
 class Game:
     def __init__(self, partner, number_amount):
