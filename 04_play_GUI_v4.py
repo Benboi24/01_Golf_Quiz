@@ -200,9 +200,9 @@ class Help:
         self.help_box.destroy()
 
 class GameStats:
-    def __init__(self, partner, game_history, game_stats):
+    def __init__(self, partner, quiz_history, game_stats):
 
-        print(game_history)
+        print(quiz_history)
 
         # disable help button
         partner.stats_button.config(state=DISABLED)
@@ -272,7 +272,23 @@ class GameStats:
                                                  text="{}".format(game_stats),
                                                  anchor="w")
         self.percent_correct_value_label.grid(row=1, column=1, padx=0)
+
+    def close_Stats(self, partner):
+        partner.stats_button.config(state=NORMAL)
+        self.stats_box.destroy()
+
+    def export(self, quiz_history, game_Stats):
+        Export(self, quiz_history, game_Stats)
         
+class Export:
+    def __init__(self, partner, quiz_history, game_stats):
+
+        self.filename_entry = None
+        self.history_frame = None
+
+
+
+
 class Game:
     def __init__(self, partner, number_amount):
         print(number_amount)
