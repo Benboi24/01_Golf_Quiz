@@ -71,12 +71,14 @@ class Quiz:
 
         # Green Help Button
         self.help_button = Button(self.hsd_frame, text="Help",
-                                   font=button_font, bg="#009900")
+                                   font=button_font, bg="#009900",
+                                   command=self.help)
         self.help_button.grid(row=0, column=0, padx=6)
 
         # Blue Stats Button
         self.stats_button = Button(self.hsd_frame, text="Stats",
-                                   font=button_font, bg="#FF0000")
+                                   font=button_font, bg="#FF0000",
+                                   command=self.stats)
         self.stats_button.grid(row=0, column=1, padx=6)
         
         # Purple Dismiss Button
@@ -84,9 +86,6 @@ class Quiz:
                                     font=button_font, bg="#B266FF", 
                                     command=self.close_quiz)
         self.dismiss_button.grid(row=0, column=2, padx=6)
-
-    def close_quiz(self):
-        root.destroy()
 
         # button frame (row 3)
         self.start_frame = Frame(self.play_frame)
@@ -144,9 +143,20 @@ class Quiz:
             self.number_error_label.config(text=error)
             self.number_error_label.config(text=error)
             
+    def close_quiz(self):
+        root.destroy()
+
+    def stats(self, game_stats):
+        GameStats(self,game_stats)
+ 
+
+    def help(self):
+        print("You asked for help")
+        get_help = Help(self)
+
 
 class Help:
-    def __init(self,partner, partial):
+    def __init__(self,partner):
 
         # disable help button
         partner.help_button.config(state=DISABLED)
@@ -180,12 +190,14 @@ class Help:
 
         # Dismiss Button (row 2)
         self.dismiss_btn = Button(self.help_frame, text="Dismiss",
-                                width=10, bg="#660000", fg="white",
-                                font="arial 16 bold")
-        self.dismiss_btn.grid(row=2)
+                                width=10, bg="#B266FF", fg="white",
+                                font="arial 16 bold",
+                                comman=partial(self.close_help, partner))
+        self.dismiss_btn.grid(row=2, pady=15)
 
-    def to_help(self):
-        get_help = Help(self)
+    def close_help(self, partner):
+        partner.help_button.config(state=NORMAL)
+        self.help_box.destroy()
 
 class GameStats:
     def __init__(self, partner, game_history, game_stats):
@@ -235,7 +247,7 @@ class GameStats:
         self.stats_correct_label.grid(row=0, column=1, padx=0)
 
         self.stats_correct_value_label = Label(self.details_frame, font=content,
-                                              text="{} Questions Correct".format(),
+                                              text="{}".format(game_stats),
                                               anchor="w")
         self.stats_correct_value_label.grid(row=0, column=1, padx=0)
 
@@ -245,7 +257,10 @@ class GameStats:
                                           anchor="e")
         self.stats_incorrect_label.grid(row=1, column=1, padx=0)
 
-        self.stats_incorrect_value_label = Label(self.details_frame)
+        self.stats_incorrect_value_label = Label(self.details_frame, font=content,
+                                                text="{}".format(game_stats),
+                                                anchor="w")
+        self.stats_incorrect_value_label.grid(row=1, column=0, padx=0)
 
         # Percentage Correct (row 2.2)
         self.percent_correct_label = Label(self.details_frame,
@@ -253,6 +268,10 @@ class GameStats:
                                           anchor="e")
         self.percent_correct_label.grid(row=1, column=1, padx=0)
 
+        self.percent_correct_value_label = Label(self.details_frame,
+                                                 text="{}".format(game_stats),
+                                                 anchor="w")
+        self.percent_correct_value_label.grid(row=1, column=1, padx=0)
         
 class Game:
     def __init__(self, partner, number_amount):
