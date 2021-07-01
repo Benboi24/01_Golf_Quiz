@@ -151,7 +151,6 @@ class Quiz:
  
 
     def help(self):
-        print("You asked for help")
         get_help = Help(self)
 
     answer_entry = [1]
@@ -272,7 +271,7 @@ class GameStats:
         self.percent_correct_label.grid(row=1, column=1, padx=0)
 
         self.percent_correct_value_label = Label(self.details_frame,
-                                                 text="{}".format(game_stats[3]),
+                                                 text="%{}".format(game_stats[3]),
                                                  anchor="w")
         self.percent_correct_value_label.grid(row=1, column=1, padx=0)
 
