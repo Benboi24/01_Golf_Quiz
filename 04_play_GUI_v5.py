@@ -16,7 +16,7 @@ class Quiz:
         self.play_frame.grid()
 
         # Set intial amount of games to zero
-        # retireve the initial amount they selected in play GUI
+        # Keeps track of how many questions have been answered
         self.question_amount = IntVar()
         self.question_amount.set(0)
 
@@ -109,7 +109,8 @@ class Quiz:
         num_asked_so_far += 1
         self.question_amount.set(num_asked_so_far)
 
-        self.question_amount_label.configure(text= "{}")
+        progress_lable = "Question {} of {}".format(num_asked_so_far, 10)
+        self.number_error_label.configure(text= progress_lable, fg="black")
         
         # print(data)
 
