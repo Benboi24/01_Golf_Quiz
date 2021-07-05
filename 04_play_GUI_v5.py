@@ -21,8 +21,8 @@ class Quiz:
         self.question_amount.set(0)
 
         # List for holding statistics
-        self.question_states_list = []
-        self.game_stats_list = [question_amount]
+        self.questions_asked = []
+        self.game_stats_list = [0, 0, 0]
 
         self.right_ans = StringVar()
 
@@ -82,7 +82,7 @@ class Quiz:
         # Blue Stats Button
         self.stats_button = Button(self.hsd_frame, text="Stats",
                                    font=button_font, bg="#FF0000",
-                                   command=self.stats)
+                                   command=lambda: self.stats(self.questions_asked, self.game_stats_list))
         self.stats_button.grid(row=0, column=1, padx=6)
         
         # Purple Dismiss Button
@@ -103,6 +103,12 @@ class Quiz:
         with open('golf_quiz_v5.csv', newline='') as f:
             reader = csv.reader(f)
             data = list(reader)
+
+        # update number of questions asked?
+        self.questions_asked.set(self.question_amount)
+        self.game_stats_list[1] = self.question_amount
+
+        self.question_amount_label.configure(text= "{}")
         
         # print(data)
 
@@ -126,6 +132,9 @@ class Quiz:
 
     def check(self):
 
+        # retrieve question number for question_list
+        question_num = self.question_amount.get()
+
         print("you pushed check")
 
         self.next_button.config(state=NORMAL)
@@ -140,29 +149,24 @@ class Quiz:
         if answer_entry == right_ans:
             print("Well done, the answer is", right_ans)
             error = "Well done, the answer is {}".format(right_ans)
+            result = "correct"
         else:
             print("sorry, the answer is", right_ans)
             error = "sorry, the right answer is, {}".format(right_ans)
+            result = "incorrect"
 
             self.number_error_label.config(text=error)
             self.number_error_label.config(text=error)
 
-    wrong_ans = [1]
-    right_ans = [2]
-    game_stats = [3]
+        question_summary = "Question {}: {}".format(question_num, result)
+        self.questions_asked.append(question_summary)
 
-    # Add round results to statistics
-    round_summary = "{} {} {}".format(wrong_ans[1], right_ans[2],
-                              game_stats[3])
-    self.round_stats_list.append(round_summary)
-    self.stats_button.config(state=NORMAL)
-    print(self.round_stats_list)
             
     def close_quiz(self):
         root.destroy()
 
-    def stats(self, game_stats):
-        GameStats(self,game_stats)
+    def stats(self, question_summary, game_stats):
+        GameStats(self, question_summary, game_stats)
  
 
     def help(self):
@@ -215,7 +219,20 @@ class Help:
 class GameStats:
     def __init__(self, partner, quiz_history, game_stats):
 
-        print(quiz_history)
+        print("quiz history", quiz_history)
+
+        print("game stats", game_stats)
+
+        # wrong_ans = [1]
+        # right_ans = [2]
+        # game_stats = [3]
+
+        # Add round results to statistics
+        # round_summary = "{} {} {}".format(wrong_ans[1], right_ans[2],
+        #                         game_stats[3])
+        # self.round_stats_list.append(round_summary)
+        # self.stats_button.config(state=NORMAL)
+        # print(self.round_stats_list)
 
         # disable help button
         partner.help_button.config(state=DISABLED)
@@ -286,7 +303,7 @@ class GameStats:
                                                  anchor="w")
         self.percent_correct_value_label.grid(row=1, column=1, padx=0)
 
-    def close_Stats(self, partner):
+    def close_stats(self, partner):
         partner.stats_button.config(state=NORMAL)
         self.stats_box.destroy()
 
