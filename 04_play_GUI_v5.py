@@ -104,9 +104,10 @@ class Quiz:
             reader = csv.reader(f)
             data = list(reader)
 
-        # update number of questions asked?
-        self.questions_asked.set(self.question_amount)
-        self.game_stats_list[1] = self.question_amount
+        # Update number of questions asked?
+        num_asked_so_far = self.question_amount.get()
+        num_asked_so_far += 1
+        self.question_amount.set(num_asked_so_far)
 
         self.question_amount_label.configure(text= "{}")
         
