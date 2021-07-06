@@ -20,6 +20,10 @@ class Quiz:
         self.question_amount = IntVar()
         self.question_amount.set(0)
 
+        # Set limit of questions, depending on user entry in start GUI
+        self.question_limit_amount = IntVar()
+        self.question_limit_amount.set(10)
+
         # List for holding statistics
         self.questions_asked = []
         self.game_stats_list = [0, 0, 0]
@@ -109,8 +113,8 @@ class Quiz:
         num_asked_so_far += 1
         self.question_amount.set(num_asked_so_far)
 
-        progress_lable = "Question {} of {}".format(num_asked_so_far, 10)
-        self.number_error_label.configure(text= progress_lable, fg="black")
+        progress_label = "Question {} of {}".format(num_asked_so_far, 10)
+        self.number_error_label.configure(text= progress_label, fg="black")
         
         # print(data)
 
