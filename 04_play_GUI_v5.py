@@ -113,6 +113,9 @@ class Quiz:
         num_asked_so_far += 1
         self.question_amount.set(num_asked_so_far)
 
+        # Allows user to get help before and during the game
+        self.help_button.config(state=NORMAL)
+
         progress_label = "Question {} of {}".format(num_asked_so_far, 10)
         self.number_error_label.configure(text= progress_label, fg="black")
         
