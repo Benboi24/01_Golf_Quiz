@@ -24,9 +24,14 @@ class Quiz:
         self.question_limit_amount = IntVar()
         self.question_limit_amount.set(10)
 
+        self.num_right = IntVar()
+        self.num_right.set(0)
+
         # List for holding statistics
         self.questions_asked = []
-        self.game_stats_list = [0, 0, 0]
+
+        # # game stats should be [right, total asked]
+        # self.game_stats_list = [0, 0]
 
         self.right_ans = StringVar()
 
@@ -86,7 +91,7 @@ class Quiz:
         # Blue Stats Button
         self.stats_button = Button(self.hsd_frame, text="Stats",
                                    font=button_font, bg="#FF0000",
-                                   command=lambda: self.stats(self.questions_asked, self.game_stats_list))
+                                   command=lambda: self.stats(self.questions_asked))
         self.stats_button.grid(row=0, column=1, padx=6)
         
         # Purple Dismiss Button
@@ -144,6 +149,8 @@ class Quiz:
         # retrieve question number for question_list
         question_num = self.question_amount.get()
 
+        var_num_right = self.num_right.get()
+
         print("you pushed check")
 
         self.next_button.config(state=NORMAL)
@@ -159,6 +166,9 @@ class Quiz:
             print("Well done, the answer is", right_ans)
             error = "Well done, the answer is {}".format(right_ans)
             result = "correct"
+            var_num_right += 1
+            self.num_right.set(var_num_right)
+
         else:
             print("sorry, the answer is", right_ans)
             error = "sorry, the right answer is, {}".format(right_ans)
@@ -174,7 +184,13 @@ class Quiz:
     def close_quiz(self):
         root.destroy()
 
-    def stats(self, question_summary, game_stats):
+    def stats(self, question_summary):
+
+        amount_asked = self.question_amount.get()
+        amount_right = self.num_right.get()
+
+        game_stats = [amount_right, amount_asked]
+
         GameStats(self, question_summary, game_stats)
  
 
@@ -232,6 +248,15 @@ class GameStats:
 
         print("game stats", game_stats)
 
+        right_ans = game_stats[0]
+        wrong_ans = game_stats[1] - game_stats[0]
+        number_asked = game_stats[1]
+
+        percent_right = right_ans / number_asked * 100
+
+        correct_text = "Questions Correct: {}".format(right_ans)
+
+
         # wrong_ans = [1]
         # right_ans = [2]
         # game_stats = [3]
@@ -267,7 +292,7 @@ class GameStats:
 
         # To Export <instructions> (row 1)
         self.export_instructions = Label(self.stats_frame,
-                                         text="Here are your Quiz Statistics."
+                                         text="Here are your Quiz Statistics. "
                                               "Please use the Export button to "
                                               "access the results of each "
                                               "round that you played", wrap=250,
@@ -286,31 +311,31 @@ class GameStats:
         self.stats_correct_label.grid(row=0, column=1, padx=0)
 
         self.stats_correct_value_label = Label(self.details_frame, font=content,
-                                              text="{}".format(game_stats[3]),
+                                              text="{}".format(right_ans),
                                               anchor="w")
-        self.stats_correct_value_label.grid(row=0, column=1, padx=0)
+        self.stats_correct_value_label.grid(row=1, column=1, padx=0)
 
         # Questions Incorrect (row 2.1)
         self.stats_incorrect_label = Label(self.details_frame,
                                           text="Questions Incorrect:", font=heading,
                                           anchor="e")
-        self.stats_incorrect_label.grid(row=1, column=1, padx=0)
+        self.stats_incorrect_label.grid(row=2, column=1, padx=0)
 
         self.stats_incorrect_value_label = Label(self.details_frame, font=content,
-                                                text="{}".format(game_stats[3]),
+                                                text="{}".format(wrong_ans),
                                                 anchor="w")
-        self.stats_incorrect_value_label.grid(row=1, column=0, padx=0)
+        self.stats_incorrect_value_label.grid(row=3, column=1, padx=0)
 
         # Percentage Correct (row 2.2)
         self.percent_correct_label = Label(self.details_frame,
                                           text="Percentage Overall:", font=heading,
                                           anchor="e")
-        self.percent_correct_label.grid(row=1, column=1, padx=0)
+        self.percent_correct_label.grid(row=4, column=1, padx=0)
 
         self.percent_correct_value_label = Label(self.details_frame,
-                                                 text="%{}".format(game_stats[3]),
+                                                 text="%{}".format(percent_right),
                                                  anchor="w")
-        self.percent_correct_value_label.grid(row=1, column=1, padx=0)
+        self.percent_correct_value_label.grid(row=5, column=1, padx=0)
 
     def close_stats(self, partner):
         partner.stats_button.config(state=NORMAL)
