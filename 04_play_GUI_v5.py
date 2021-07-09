@@ -297,7 +297,7 @@ class GameStats:
                                               "access the results of each "
                                               "round that you played", wrap=250,
                                          font="arial 10 italic",
-                                         justify=LEFT, fg="green",
+                                         justify=CENTER, fg="green",
                                          padx=10, pady=10)
         self.export_instructions.grid(row=1)    
 
@@ -332,7 +332,7 @@ class GameStats:
                                           anchor="e")
         self.percent_correct_label.grid(row=4, column=1, padx=0)
 
-        self.percent_correct_value_label = Label(self.details_frame,
+        self.percent_correct_value_label = Label(self.details_frame, font=content,
                                                  text="{}%".format(percent_right),
                                                  anchor="w")
         self.percent_correct_value_label.grid(row=5, column=1, padx=10)
@@ -340,12 +340,33 @@ class GameStats:
         # Rounds percentage to 2 decimal points
         percent_right = str(round(percent_right, 2))
 
+        # End message Label
+        self.end_message = Label(self.stats_frame,
+                                text="Thankyou for playing the "
+                                "Golf Quiz Game. Hopefully you "
+                                "gained some knowledge in Golf. "
+                                "See you later!!", wrap=250,
+                                font="arial 10 italic",
+                                justify=CENTER, fg="green",
+                                padx=10, pady=10)
+        self.end_message.grid(row=6)
+
+        # De frame (dismiss, export)
+        self.De_frame = Frame(self.stats_frame)
+        self.De_frame.grid(row=7)
+
         # Dismiss Button (row 3)
-        self.dismiss_btn = Button(self.stats_frame, text="Dismiss",
+        self.dismiss_btn = Button(self.De_frame, text="Dismiss",
                                 width=10, bg="#B266FF", fg="white",
                                 font="arial 16 bold",
-                                comman=partial(self.close_stats, partner))
-        self.dismiss_btn.grid(row=6, pady=10)
+                                command=partial(self.close_stats, partner))
+        self.dismiss_btn.grid(row=0, column=0, pady=10)
+
+        # Export Button
+        self.export_button = Button(self.De_frame, text="Export",
+                                    font="arial 16 bold", bg="#FF8000",
+                                    command=partial(self.export, partner))
+        self.export_button.grid(row=0, column=1, padx=5)
 
     def close_stats(self, partner):
         partner.stats_button.config(state=NORMAL)
