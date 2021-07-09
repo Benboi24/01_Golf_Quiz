@@ -333,9 +333,19 @@ class GameStats:
         self.percent_correct_label.grid(row=4, column=1, padx=0)
 
         self.percent_correct_value_label = Label(self.details_frame,
-                                                 text="%{}".format(percent_right),
+                                                 text="{}%".format(percent_right),
                                                  anchor="w")
-        self.percent_correct_value_label.grid(row=5, column=1, padx=0)
+        self.percent_correct_value_label.grid(row=5, column=1, padx=10)
+
+        # Rounds percentage to 2 decimal points
+        percent_right = str(round(percent_right, 2))
+
+        # Dismiss Button (row 3)
+        self.dismiss_btn = Button(self.stats_frame, text="Dismiss",
+                                width=10, bg="#B266FF", fg="white",
+                                font="arial 16 bold",
+                                comman=partial(self.close_stats, partner))
+        self.dismiss_btn.grid(row=6, pady=10)
 
     def close_stats(self, partner):
         partner.stats_button.config(state=NORMAL)
