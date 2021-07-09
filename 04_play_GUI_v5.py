@@ -292,10 +292,9 @@ class GameStats:
 
         # To Export <instructions> (row 1)
         self.export_instructions = Label(self.stats_frame,
-                                         text="Here are your Quiz Statistics. "
-                                              "Please use the Export button to "
+                                         text="Please use the Export button to "
                                               "access the results of each "
-                                              "round that you played", wrap=250,
+                                              "round that you played.", wrap=250,
                                          font="arial 10 italic",
                                          justify=CENTER, fg="green",
                                          padx=10, pady=10)

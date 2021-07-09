@@ -25,13 +25,13 @@ class Start:
                                                " Each question will be randomly "
                                                " generated. Try answer as many "
                                                " correct as possible."
-                                               " Don't forget to have a good game!!",
-                                          wrap=275, justify=LEFT, padx=10, pady=10)
+                                               " Don't forget to have a good game!!", wrap=275,
+                                          fg="green", justify=CENTER, padx=10, pady=10)
         self.quiz_instructions.grid(row=1)
 
         self.question_instructions = Label(self.start_frame, font="Arial 10 bold",
                                                 text="How many questions would you like? ",
-                                                wrap=275, justify=LEFT, padx=10, pady=10)
+                                                wrap=275, justify=CENTER, padx=10, pady=10)
         self.question_instructions.grid(row=2)
 
         # Question Heading, entry box & Button (row 2)
@@ -70,18 +70,15 @@ class Start:
         self.start_amount_entry.config(bg="white")
         self.number_error_label.config(text="")
 
-        # Disable start button in case user changes their mind
-        
-
         try:
             question_amount = int(question_amount)
 
             if question_amount < 10:
                 has_errors = "yes"
                 error_feedback = "Sorry, the minimum amount of questions you can play with is 10"
-            elif question_amount > 40:
+            elif question_amount > 45:
                 has_errors = "yes"
-                error_feedback = "Sorry, the maximum amount of questions you can play with is 40"
+                error_feedback = "Sorry, the maximum amount of questions you can play with is 45"
 
         except ValueError:
                 has_errors = "yes"
@@ -92,6 +89,7 @@ class Start:
             self.number_error_label.config(text=error_feedback)
         else:
             # Set question balance to amount entered by the user
+            error_feedback = "Let's get started!!"
             self.number_amount.set(question_amount)
 
     def to_play(self):
