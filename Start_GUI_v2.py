@@ -89,7 +89,7 @@ class Start:
             self.number_error_label.config(text=error_feedback)
         else:
             # Set question balance to amount entered by the user
-            error_feedback = "Let's get started!!"
+            print("Let's get started!!")
             self.number_amount.set(question_amount)
 
     def to_play(self):

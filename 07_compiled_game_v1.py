@@ -97,7 +97,7 @@ class Start:
 
     def to_play(self):
 
-        # Retrieve number amount
+        # Retrieve question amount
         question_amount = self.number_amount.get()
 
         Game(self. question_amount)

@@ -3,6 +3,7 @@ from tkinter import *
 from functools import partial  # To prevent unwanted windows
 import random
 import csv
+import re
 
 
 class Quiz:
@@ -364,7 +365,7 @@ class GameStats:
         # Export Button
         self.export_button = Button(self.De_frame, text="Export",
                                     font="arial 16 bold", bg="#FF8000",
-                                    command=partial(self.export, partner))
+                                    command=lambda: self.export(quiz_history, game_stats))
         self.export_button.grid(row=0, column=1, padx=5)
 
     def close_stats(self, partner):
@@ -390,20 +391,25 @@ class Export:
         # Users presses cross at the top right side closing window
         self.export_box.protocol("WM_DELETE_WINDOW",
                                 partial(self.close_export, partner))
-
+       
         # Set up GUI Frame
-        self.export_frame = Frame(self.export_frame,
-                                  text="Export / Instructions",
-                                  font="arial 15 bold", bg=background)
+        self.export_frame = Frame(self.export_box, width=350, bg=background)
+        self.export_frame.grid()
+
+        # Set up history heading (row 0)
+        self.export_heading = Label(self.export_frame,
+                                    text="Export/Instructions",
+                                    font="arial 16 bold", bg=background)
+        self.export_heading.grid(row=0)
 
         # Stats text (label, row 1)
-        self.history_text = Label(self.history_frame, text="Please enter a filename "
+        self.history_text = Label(self.export_frame, text="Please enter a filename "
                                                             "in the entry box below "
                                                             "then press save it"
                                                             "will then save to a "
                                                             "text file",
                                                             justify=LEFT, width=30,
-                                                            bg=background, wrap=275)
+                                                            bg=background, wrap=250)
         self.history_text.grid(row=1)
 
         # Filename Entry Box (row 2)

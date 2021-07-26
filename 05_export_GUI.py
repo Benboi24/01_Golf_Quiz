@@ -121,7 +121,7 @@ class Export:
                 f.write(round + "\n")
 
             # Heading for Rounds
-            f.write("\nRound Details\n\n")
+            f.write("\nQuiz Round Details\n\n")
 
             # add new line at end of each item
             for item in game_history:
