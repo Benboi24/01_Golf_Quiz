@@ -424,11 +424,11 @@ class Export:
         # Save and Cancel Buttons (first row of the frame)
         self.save_button = Button(self.save_cancel_frame, text="Save",
                                   command=partial(lambda: self.save_history(partner, quiz_history, game_stats)))
-        self.save_button.grid(row=0, column=0)
+        self.save_button.grid(row=0, column=0, padx=10)
 
         self.cancel_button = Button(self.save_cancel_frame, text="Cancel",
                                     command=partial(self.close_export, partner))
-        self.cancel_button.grid(row=0, column=1)
+        self.cancel_button.grid(row=0, column=1, padx=10)
 
     
     def save_history(self, partner, quiz_history, game_stats):
