@@ -393,7 +393,7 @@ class Export:
                                 partial(self.close_export, partner))
        
         # Set up GUI Frame
-        self.export_frame = Frame(self.export_box, width=350, bg=background)
+        self.export_frame = Frame(self.export_box, width=300, bg=background)
         self.export_frame.grid()
 
         # Set up history heading (row 0)
@@ -408,7 +408,7 @@ class Export:
                                                             "then press save it"
                                                             "will then save to a "
                                                             "text file",
-                                                            justify=LEFT, width=30,
+                                                            justify=CENTER, width=40,
                                                             bg=background, wrap=250)
         self.history_text.grid(row=1)
 
@@ -424,7 +424,7 @@ class Export:
         # Save and Cancel Buttons (first row of the frame)
         self.save_button = Button(self.save_cancel_frame, text="Save",
                                   command=partial(lambda: self.save_history(partner, quiz_history, game_stats)))
-        self.save_button.grid(row=0, column=1)
+        self.save_button.grid(row=0, column=0)
 
         self.cancel_button = Button(self.save_cancel_frame, text="Cancel",
                                     command=partial(self.close_export, partner))
