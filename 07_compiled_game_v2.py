@@ -67,7 +67,7 @@ class Quiz:
 
         # Set limit of questions, depending on user entry in start GUI
         self.question_limit_amount = IntVar()
-        self.question_limit_amount.set(5)
+        self.question_limit_amount.set(15)
 
         self.num_right = IntVar()
         self.num_right.set(0)
@@ -299,6 +299,8 @@ class Help:
 class GameStats:
     def __init__(self, partner, quiz_history, game_stats):
 
+        partner.help_button.config(state=DISABLED)
+
         print("quiz history", quiz_history)
 
         print("game stats", game_stats)
@@ -416,6 +418,8 @@ class GameStats:
                                 command=partial(self.close_stats, partner))
         self.dismiss_btn.grid(row=0, column=0, pady=10)
 
+        partner.help_button.config(state=NORMAL)
+
         # Export Button
         self.export_button = Button(self.De_frame, text="Export",
                                     font="arial 16 bold", bg="#FF8000",
@@ -479,11 +483,11 @@ class Export:
         # Save and Cancel Buttons (first row of the frame)
         self.save_button = Button(self.save_cancel_frame, text="Save",
                                   command=partial(lambda: self.save_history(partner, quiz_history, game_stats)))
-        self.save_button.grid(row=0, column=0, padx=10)
+        self.save_button.grid(row=0, column=0)
 
         self.cancel_button = Button(self.save_cancel_frame, text="Cancel",
                                     command=partial(self.close_export, partner))
-        self.cancel_button.grid(row=0, column=1, padx=10)
+        self.cancel_button.grid(row=0, column=1)
 
     
     def save_history(self, partner, quiz_history, game_stats):
