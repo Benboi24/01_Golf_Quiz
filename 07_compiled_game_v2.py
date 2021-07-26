@@ -67,7 +67,7 @@ class Quiz:
 
         # Set limit of questions, depending on user entry in start GUI
         self.question_limit_amount = IntVar()
-        self.question_limit_amount.set(15)
+        self.question_limit_amount.set(5)
 
         self.num_right = IntVar()
         self.num_right.set(0)
@@ -198,7 +198,15 @@ class Quiz:
 
         print("you pushed check")
 
-        self.next_button.config(state=NORMAL)
+        # check that users has not finished quiz and renable button
+
+        questions_answered = self.question_amount.get()
+        questions_needed = self.question_limit_amount.get()
+
+        if questions_answered < questions_needed:
+            self.next_button.config(state=NORMAL)
+        else:
+            self.next_button.config(text="Quiz Over")
 
         right_ans = self.right_ans.get()
         print(right_ans)
@@ -214,12 +222,14 @@ class Quiz:
             var_num_right += 1
             self.num_right.set(var_num_right)
 
+            self.number_error_label.config(text="Well done")
+
         else:
             print("sorry, the answer is", right_ans)
             error = "sorry, the right answer is, {}".format(right_ans)
             result = "incorrect"
 
-            self.number_error_label.config(text=error)
+            # self.number_error_label.config(text=error)
             self.number_error_label.config(text=error)
 
         question_summary = "Question {}: {}".format(question_num, result)
@@ -265,7 +275,7 @@ class Help:
 
         help_text="This game is a quiz on general knowledge of Golf "\
         "ranging from dates, people and places. "\
-        "Maximum of 50 questions per round. "\
+        "15 questions per round. "\
         "Once finished you can export answers & questions to a separate file. " 
         "Even if you don't know take a guess, " 
         "enjoy the quiz and try get 100%!"
@@ -415,6 +425,7 @@ class GameStats:
     def close_stats(self, partner):
         partner.stats_button.config(state=NORMAL)
         self.stats_box.destroy()
+        
 
     def export(self, quiz_history, game_stats):
         Export(self, quiz_history, game_stats)
