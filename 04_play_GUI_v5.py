@@ -405,7 +405,7 @@ class Export:
         # Stats text (label, row 1)
         self.history_text = Label(self.export_frame, text="Please enter a filename "
                                                             "in the entry box below "
-                                                            "then press save it"
+                                                            "then press save, it "
                                                             "will then save to a "
                                                             "text file",
                                                             justify=CENTER, width=40,
