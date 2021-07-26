@@ -48,7 +48,7 @@ class Start:
         Game(self)
 
         # hide start up window
-        # root.withdraw()
+        root.withdraw()
 
 class Quiz:
     def __init__(self, parent):
