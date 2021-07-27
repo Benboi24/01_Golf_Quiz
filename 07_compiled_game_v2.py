@@ -535,20 +535,21 @@ class Export:
             # create file name to hold data
             f = open(filename, "w+")
 
-            f.write("Golf Quiz Game\n\n")
+            f.write("Golf Quiz Game:\n\n")
 
-            f.write("Here are your stats\n\n")
+            f.write("Here are your stats:\n\n")
 
             correct = game_stats[0]
 
             f.write("Questions correct: {}".format(correct))
 
-            f.write("\n")
+            f.write("\n\n")
 
-            f.write("Here is your history\n\n")
+            f.write("Here is your history:\n\n")
 
             for item in quiz_history:
                 f.write(item)
+                f.write("\n")
 
         # close file
         f.close()
