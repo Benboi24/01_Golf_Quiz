@@ -208,6 +208,12 @@ class Quiz:
         else:
             self.next_button.config(text="Quiz Over")
 
+        answer_entry = "UPPERCASE"
+        print(answer_entry)
+
+        answer_entry_lower = answer_entry.lower()
+        print(answer_entry_lower)
+
         right_ans = self.right_ans.get()
         print(right_ans)
 
@@ -215,14 +221,14 @@ class Quiz:
         print(answer_entry)
 
         # Printing out wether the answer is right or incorrect
-        if answer_entry == right_ans:
+        if answer_entry.lower() == right_ans.lower():
             print("Well done, the answer is", right_ans)
             error = "Well done, the answer is {}".format(right_ans)
             result = "correct"
             var_num_right += 1
             self.num_right.set(var_num_right)
 
-            self.number_error_label.config(text="Well done")
+            self.number_error_label.config(text="Well done!")
 
         else:
             print("sorry, the answer is", right_ans)
@@ -298,8 +304,6 @@ class Help:
 
 class GameStats:
     def __init__(self, partner, quiz_history, game_stats):
-
-        partner.help_button.config(state=DISABLED)
 
         print("quiz history", quiz_history)
 
@@ -532,6 +536,19 @@ class Export:
             f = open(filename, "w+")
 
             f.write("Golf Quiz Game\n\n")
+
+            f.write("Here are your stats\n\n")
+
+            correct = game_stats[0]
+
+            f.write("Questions correct: {}".format(correct))
+
+            f.write("\n")
+
+            f.write("Here is your history\n\n")
+
+            for item in quiz_history:
+                f.write(item)
 
         # close file
         f.close()
