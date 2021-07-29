@@ -1,8 +1,11 @@
-Golf Quiz Game
+Golf Quiz Game:
 
-Here are your stats
+Here are your stats:
 
-Questions correct: 1
-Here is your history
+Questions correct: 2
 
-Question 1: incorrectQuestion 2: incorrectQuestion 2: incorrectQuestion 2: incorrectQuestion 4: correct
+Here is your history:
+
+Question 1: correct
+Question 2: correct
+Question 3: incorrect
